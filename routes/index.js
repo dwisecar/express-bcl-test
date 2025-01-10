@@ -11,11 +11,11 @@ router.post(
   function (req, res, next) {
     // at this point the logout token is valid, checked by requiresValidLogoutToken middleware
     // you can access it from the request object: req.logoutToken
-    console.log(req);
+    console.log(req.body);
     // delete user session so the user gets logged out
-    req.session.destroy(
-      req.logoutToken.sid
-    );
+    // req.session.destroy(
+    //   req.logoutToken.sid
+    // );
 
     res.sendStatus(200);
   }
