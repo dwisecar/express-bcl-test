@@ -8,11 +8,10 @@ const requiresValidLogoutToken = require('../middlewares/validateLogoutToken');
 // note that the built-in route created is /backchannel-logout
 router.post(
   '/backchannel-logout-custom',
-  requiresValidLogoutToken,
   function (req, res, next) {
     // at this point the logout token is valid, checked by requiresValidLogoutToken middleware
     // you can access it from the request object: req.logoutToken
-    console.log("Logout Token: " + logoutToken);
+    console.log(req);
     // delete user session so the user gets logged out
     req.session.destroy(
       req.logoutToken.sid

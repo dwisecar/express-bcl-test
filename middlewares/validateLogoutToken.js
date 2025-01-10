@@ -4,7 +4,7 @@
 const jose = require('jose');
 
 async function requiresValidLogoutToken(req, res, next) {
-    console.log(req);
+
   // get remote key set for token verification
   const JWKS = jose.createRemoteJWKSet(
     new URL(process.env.ISSUER_BASE_URL + '/.well-known/jwks.json')
