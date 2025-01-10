@@ -1,8 +1,13 @@
 var router = require('express').Router();
 const { requiresAuth } = require('express-openid-connect');
+const bodyParser = require('body-parser');
 
 // middleware to validate the logout token
 const requiresValidLogoutToken = require('../middlewares/validateLogoutToken');
+
+//middleware to parse form data
+router.use(bodyParser.urlencoded({ extended: true}));
+router.use(bodyParser.json());
 
 // new route to receive backchannel logout tokens
 // note that the built-in route created is /backchannel-logout
