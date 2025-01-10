@@ -18,7 +18,7 @@ router.post(
     // at this point the logout token is valid, checked by requiresValidLogoutToken middleware
     // you can access it from the request object: req.logoutToken
     console.log("SID From decoded logout token: " + req.logoutToken.sid);
-
+    console.log("Current sid: " + user.sid);
     if(req.logoutToken.sid == user.sid){
       res.sendStatus(200);
       //kill session
@@ -30,8 +30,6 @@ router.post(
     // req.session.destroy(
     //   req.logoutToken.sid
     // );
-
-    res.sendStatus(200);
   }
 );
 
