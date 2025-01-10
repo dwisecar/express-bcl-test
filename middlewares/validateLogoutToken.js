@@ -11,7 +11,7 @@ async function requiresValidLogoutToken(req, res, next) {
   );
 
   const logoutToken = req.body.logout_token;
-
+  console.log("Logout Token: " + logoutToken);
   if (!logoutToken) {
     res.status(400).send('Need logout token');
   }

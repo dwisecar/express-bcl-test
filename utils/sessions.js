@@ -14,7 +14,8 @@ class CustomSessionStore extends session.Store{
 
    set(sid, session, callback) {
     this.sessions[sid] = JSON.stringify(session);
-    console.log("Custom session created");
+    const auth0_sid = JSON.parse(this.sessions[sid]).data.sid;
+    console.log("Session created, Auth0 session ID: " + auth0_sid);
     callback(null);
    }
 

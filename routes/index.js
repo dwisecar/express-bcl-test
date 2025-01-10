@@ -13,10 +13,19 @@ router.use(bodyParser.json());
 // note that the built-in route created is /backchannel-logout
 router.post(
   '/backchannel-logout-custom',
+  requiresValidLogoutToken,
   function (req, res, next) {
     // at this point the logout token is valid, checked by requiresValidLogoutToken middleware
     // you can access it from the request object: req.logoutToken
-    console.log(req.body);
+    console.log("SID From decoded logout token: " + req.logoutToken.sid);
+
+    if(req.logoutToken.sid == user.sid){
+      res.sendStatus(200);
+      //kill session
+    } else {
+      res.sendStatus(400, "Incorrect sid");
+    }
+
     // delete user session so the user gets logged out
     // req.session.destroy(
     //   req.logoutToken.sid
@@ -28,7 +37,7 @@ router.post(
 
 router.get('/', function (req, res, next) {
   res.render('index', {
-    title: 'Auth0 Webapp sample Nodejs',
+    title: 'Backchannel Logout sample Nodejs',
     isAuthenticated: req.oidc.isAuthenticated()
   });
 });
