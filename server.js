@@ -26,6 +26,9 @@ const config = {
     store: new CustomSessionStore(),
   },
   backchannelLogout: true,
+  authorizationParams: {
+    organization: "org_pHIxzai6VWBnBBLg"
+  }
 };
 
 const port = process.env.PORT || 3000;
